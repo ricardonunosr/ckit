@@ -12,10 +12,6 @@ Arena* arena_alloc(size_t capacity)
   return arena;
 }
 
-void arena_release(Arena* arena)
-{
-}
-
 static int is_power_of_two(uintptr_t x)
 {
   return (x&(x-1)) == 0;
