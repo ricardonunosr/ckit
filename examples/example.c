@@ -28,5 +28,31 @@ int main(void)
     printf("arena time elapsed: %lld ns\n",elapsed_time_arena);
     printf("malloc time elapsed: %lld ns\n",elapsed_time_malloc);
 
+    init_timer_system();
+    Pool* p = pool_init(Megabytes(2),64);
+    void *a, *b, *c, *d, *e, *f;
+
+    a = pool_alloc(&p);
+    b = pool_alloc(&p);
+    c = pool_alloc(&p);
+    d = pool_alloc(&p);
+    e = pool_alloc(&p);
+    f = pool_alloc(&p);
+
+    pool_free(&p, f);
+    pool_free(&p, c);
+    pool_free(&p, b);
+    pool_free(&p, d);
+
+    d = pool_alloc(&p);
+
+    pool_free(&p, a);
+
+    a = pool_alloc(&p);
+
+    pool_free(&p, e);
+    pool_free(&p, a);
+    pool_free(&p, d);
+
     return 0;
 }
